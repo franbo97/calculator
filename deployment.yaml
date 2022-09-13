@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: applicazione-deployment
+  labels:
+    app: applicazione
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: applicazione
+  template:
+    metadata:
+      labels:
+        app: applicazione
+    spec:
+      containers:
+      - name: applicazione
+        image: 172.17.0.1:5000/startup:{{VERSION}}
+        ports:
+        - containerPort: 5000
